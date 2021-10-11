@@ -1,4 +1,9 @@
+#!/usr/bin/env python3
+
+from dotenv import dotenv_values
+
 import discord
+import logging
 
 class CommonFuncs():
     def __init__(self):
@@ -48,4 +53,5 @@ class MissionBot(discord.Client, CommonFuncs):
 
 
 client = MissionBot()
-client.run(<DISCORD_BOT_TOKEN>)
+config = dotenv_values('.env')
+client.run(config['TOKEN'])
