@@ -2,7 +2,7 @@ import discord
 
 class CommonFuncs():
     def __init__(self):
-        self._roleid = ['876015863663308821']
+        pass
     
     #Get roles for user
     def getRoles(self, m):
@@ -14,15 +14,18 @@ class CommonFuncs():
     #Checks permissions for certain commands
     def checkPerms(self, m):
         role = self.getRoles(m)
-        for i in role:
-            if self._roleid == i:
-                return True
+        for i in roles:
+            for j in role:
+                if j == i:
+                    return True
         return False
 
 
 class MissionBot(discord.Client, CommonFuncs):
 
-    #func = CommonFuncs()
+    def __init__(self):
+        self._roleid = ['876015863663308821']
+        super().__init__()
 
     async def on_ready(self):
         print("Logged in as {0.user}".format(client))
@@ -45,4 +48,4 @@ class MissionBot(discord.Client, CommonFuncs):
 
 
 client = MissionBot()
-client.run('ODk2MjY2MDI3MzgwNDA0MjM1.YWEmyA.g4y8JG3JRU7tSJOeOJ8Q1LnD90I')
+client.run(<DISCORD_BOT_TOKEN>)
