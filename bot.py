@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from discord.ext import commands
 from dotenv import dotenv_values
 
 import discord
@@ -8,17 +9,21 @@ import logging
 class CommonFuncs():
     def __init__(self):
         pass
-    
+
     #Get roles for user
     def getRoles(self, m):
         role = []
-        for x in m.author.roles:
+        for x in (m.roles):
             role.append(str(x.id))
+        
         return role
 
     #Checks permissions for certain commands
-    def checkPerms(self, m):
-        role = self.getRoles(m)
+    def checkPerms(self, m, roles):
+        member : discord.Member=None
+        if member is None:
+            member = m.author
+        role = self.getRoles(member)
         for i in roles:
             for j in role:
                 if j == i:
