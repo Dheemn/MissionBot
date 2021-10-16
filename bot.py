@@ -82,7 +82,7 @@ async def myroles(ctx, *, member : discord.Member=None):
     await ctx.send("Your roles: " + str(role))
 
 @bot.command()
-async def missionAdd(ctx, *, arg):
+async def missionAdd(ctx, *args):
     help = """```This command creates Coalition missions\nUsage: !missionCreate [title];
 [description: Supports standard discord formatting.];\n
 [category: "BGS"/"Research"];
@@ -96,10 +96,10 @@ async def missionAdd(ctx, *, arg):
     if funcs.checkPerms(ctx, allowed_roles) is False:
         await ctx.send("You need appropriate permissions")
         return
-    if (len(arg) == 0):
+    if (len(args) == 0):
         await ctx.send(help)
         return
-    message = str(arg)
+    message = str(args)
     mission = message.split(';')
     print(mission)
 
