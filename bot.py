@@ -82,7 +82,7 @@ async def myroles(ctx, *, member : discord.Member=None):
     await ctx.send("Your roles: " + str(role))
 
 @bot.command()
-async def missionAdd(ctx, *args):
+async def missionAdd(ctx, *, arg):
     help = """```This command creates Coalition missions\nUsage: !missionCreate [title];
 [description: Supports standard discord formatting.];\n
 [category: "BGS"/"Research"];
@@ -96,9 +96,27 @@ async def missionAdd(ctx, *args):
     if funcs.checkPerms(ctx, allowed_roles) is False:
         await ctx.send("You need appropriate permissions")
         return
-    if (len(args) == 0):
+    if (len(arg) == 0):
         await ctx.send(help)
         return
+    message = str(arg)
+    mission = message.split(';')
+    print(mission)
+
+    #Strips the 0th and last element(8th) of " from the mission list
+
+    #Title=0; Description=1; Category=2; Status=3; Agents=4; Personnel=5; Skills=6; Timeframe=7; Platform=8
+    await ctx.send(f'''**{mission[0]}**
+
+*Status: **{mission[3]}, {mission[4]}***
+*Category: **{mission[2]}***
+
+>  {mission[1]}
+
+*Personnel: **{mission[5]}***
+*Skills: **{mission[6]}***
+*Timeframe: **{mission[7]}***
+*Platform: **{mission[8]}***''')
 
 
 config = dotenv_values('.env')
