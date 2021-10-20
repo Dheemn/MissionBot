@@ -149,13 +149,13 @@ def main():
         #error = getattr(error, 'original', error)
         
         if isinstance(error, commands.CommandNotFound):
-            print(f'[{datetime.datetime.now()}]: {ctx.author} tried executing {ctx.command}, ERROR: not found')
-            await ctx.send(f'Command {ctx.command} not found')
+            print(f'[{datetime.datetime.now()}]: {ctx.author} tried executing {ctx.message.content}, ERROR: not found')
+            await ctx.send(f'Command {ctx.message.content} not found')
             return
 
         if isinstance(error, commands.DisabledCommand):
-            print(f'[{datetime.datetime.now()}]: {ctx.author} tried executing disabled command: {ctx.command}')
-            await ctx.send(f'{ctx.command} has been disabled.')
+            print(f'[{datetime.datetime.now()}]: {ctx.author} tried executing disabled command: {ctx.message.content}')
+            await ctx.send(f'{ctx.message.content} has been disabled.')
 
 
     config = dotenv_values('.env')
