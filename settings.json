@@ -1,0 +1,16 @@
+{
+    "settings": {
+        "channels" : {
+            "ANNOUNCEMENT_CHANNEL": <channelID of announcement channel>,
+            "ADMIN_CHANNEL": <channelID of admin channel>
+        },
+        "roles": {
+            "suRoles": [
+                <roleID of administrator>
+            ],
+            "allowed_roles": [
+                <roleID's of allowed roles>
+            ]
+        }
+    }
+}
