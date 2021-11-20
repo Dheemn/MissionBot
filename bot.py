@@ -78,6 +78,17 @@ class CommonFuncs():
             self._l.error(f'Error: {e}')
             raise e
 
+    def js_edit(self, file, path, data):
+        path = path.split('.')
+        with open(file=file, mode='r', encoding='utf-8') as f:
+            js_d = json.load(f)
+            f.close()       
+        js_d[path[0]][path[1]][path[2]] = data
+        with open(file=file, mode='w') as f:
+            json.dump(js_d, f, indent=4)
+            f.close()
+
+
 def main():
 
     intents = discord.Intents(messages = True, members = True, guilds = True)
@@ -93,6 +104,8 @@ def main():
     loggy.addHandler(lh)
 
     funcs = CommonFuncs(l=loggy)
+
+    SETTING_FILE = 'settings.json'
 
     ANNOUNCMENT_CHANNEL = funcs.get_jdata(data='settings.channels.ANNOUNCEMENT_CHANNEL')
     ADMIN_CHANNEL = funcs.get_jdata(data='settings.channels.ADMIN_CHANNEL')
@@ -124,9 +137,10 @@ def main():
             await ctx.reply("```Help: This command gives permission to role members to post Coalition Missions\nUsage: $addRole <roleID of role>```")
             return
         allowed_roles.append(str(roleid))
+        funcs.js_edit(file=SETTING_FILE, path='settings.roles.allowed_roles', data=allowed_roles)
         loggy.info(f'RoleID {roleid} has been added to inclusion zone by {ctx.author}')
         await ctx.reply(f'RoleID {roleid} has been added')
-        
+
     @bot.command()
     #@commands.has_any_role(su)
     async def rmRole(ctx, *, roleid=None):
@@ -140,6 +154,7 @@ def main():
             await ctx.reply("```Help: This command gives permission to role members to post Coalition Missions\nUsage: $addRole <roleID of role>```")
             return
         allowed_roles.remove(str(roleid))
+        funcs.js_edit(file=SETTING_FILE, path='settings.roles.allowed_roles', data=allowed_roles)
         loggy.info(f'RoleID {roleid} has been removed from inclusion zone by {ctx.author}')
         await ctx.reply(f'RoleID {roleid} has been removed')
 
