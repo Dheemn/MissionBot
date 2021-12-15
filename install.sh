@@ -20,6 +20,9 @@ main () {
     echo "Please configure the settings for the bot..."
     python setup.py
     echo "Installation done..!!"
+    echo "To start bot, execute 'systemctl start bot.service'"
+    echo "To start bot at startup, execute 'systemctl enable bot.service'"
+    echo "Make sure to have discord bot's token set in env file"
 }
 
 main
