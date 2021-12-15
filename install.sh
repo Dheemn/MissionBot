@@ -8,9 +8,6 @@ main () {
         cd /opt/
         sudo git clone https://github.com/Dheemn/MissionBot.git
         cd MissionBot/
-    else
-        choice=`read -r "Enter the directory where directory is: "`
-        cd $choice
     fi
     echo "Installing python dependencies..."
     python3 -m pip install --user virtualenv
