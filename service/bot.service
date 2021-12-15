@@ -1,0 +1,9 @@
+[Unit]
+Description=This is service for discord bot
+
+[Service]
+ExecStart=/bin/bash -c 'cd /opt/MissionBot ; . venv/bin/activate && python bot.py'
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
