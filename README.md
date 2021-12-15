@@ -17,3 +17,7 @@ cd MissionBot
 chmod +x install.sh
 ./install.sh
 ```
+To keep the bot updated, execute
+```
+git clone
+```
